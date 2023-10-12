@@ -1,0 +1,20 @@
+@import "../../../assets/scss/variables";
+
+header {
+  img {
+    object-fit: scale-down;
+  }
+}
+
+::ng-deep {
+  p-button {
+    &:hover {
+      .fa-magnifying-glass {
+        color: #fff;
+      }
+    }
+    .fa-magnifying-glass {
+      color: $wine-400;
+    }
+  }
+}

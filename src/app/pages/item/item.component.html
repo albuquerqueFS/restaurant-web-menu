@@ -1,0 +1,43 @@
+<div class="z-10 mx-auto flex max-w-[800px] justify-between px-4 py-4">
+  <i
+    class="fa-solid fa-arrow-left hover:cursor-pointer"
+    [routerLink]="['../..']"
+    routerLinkActive="router-link-active"
+  ></i>
+  <p class="mx-auto">Detalhe do produto</p>
+</div>
+
+<main
+  class="flex h-[calc(100%-53px)] flex-col bg-white"
+  *ngIf="item$ | async as item"
+>
+  <div class="z-10 mx-auto flex w-full max-w-[800px] justify-center px-4 pb-4">
+    <section class="w-full">
+      <img
+        class="object-scale-down w-full mb-2 outline outline-1 outline-slate-100"
+        [src]="item.icon"
+        alt=""
+      />
+      <p class="mt-4 text-xl font-bold">{{ item.name }}</p>
+      <p class="my-2 text-base text-slate-500">
+        {{ item.description }}
+      </p>
+      <p class="py-2 mt-4 text-xl font-bold">
+        {{ item.price | currency: "BRL" }}
+      </p>
+    </section>
+  </div>
+  <div class="flex-auto block bg-wine-500 pb-14">
+    <main class="z-10 mx-auto -mt-2 flex max-w-[800px] px-4 py-8">
+      <div class="flex flex-col w-full">
+        <p class="text-base font-bold tracking-wide text-white">Observações</p>
+        <textarea
+          draggable="false"
+          class="mt-2 min-h-[120px] w-full resize-none rounded shadow outline outline-2 outline-slate-300"
+        ></textarea>
+      </div>
+    </main>
+  </div>
+</main>
+
+<app-cart-footer></app-cart-footer>

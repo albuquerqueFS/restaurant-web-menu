@@ -1,0 +1,10 @@
+<div *ngIf="restaurants$ | async as restaurants">
+  <div
+    *ngFor="let restaurant of restaurants"
+    [routerLink]="[restaurant.key]"
+    style="display: flex"
+  >
+    <img [src]="restaurant.image_cover" alt="" height="100" width="100" />
+    <a routerLinkActive="router-link-active">{{ restaurant.name }}</a>
+  </div>
+</div>
