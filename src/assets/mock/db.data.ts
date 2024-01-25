@@ -1,3 +1,5 @@
+import { Item, Restaurant } from 'src/@types/type';
+
 interface Database {
   restaurants: Restaurant[];
 }

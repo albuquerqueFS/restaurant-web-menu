@@ -1,0 +1,37 @@
+<footer
+  class="fixed bottom-0 left-1/2 flex w-full max-w-[800px] -translate-x-1/2 justify-between rounded bg-white px-4 py-4 outline outline-1 outline-slate-200"
+>
+  <ng-container *ngIf="systemLevel === levels.ITEM">
+    <div class="flex items-center gap-2 w-fit">
+      <button class="p-2 rounded-sm bg-slate-600">
+        <i class="text-white fa-solid fa-minus"></i>
+      </button>
+      <p>1</p>
+      <button class="p-2 rounded-sm bg-slate-600">
+        <i class="text-white fa-solid fa-plus"></i>
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="systemLevel === levels.ITEM">
+    <div class="flex items-center rounded flex-nowrap bg-wine-500">
+      <button class="w-full h-full px-8 text-white">Adicionar</button>
+      <p class="px-8 text-white">{{ priceLabel | currency: "BRL" }}</p>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="systemLevel === levels.MENU">
+    <div class="flex flex-col items-center">
+      <p class="font-bold">Itens no carrinho</p>
+      <p>{{ quantity }}</p>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="systemLevel === levels.MENU">
+    <div class="flex items-center rounded flex-nowrap bg-wine-500">
+      <button class="w-full h-full px-8 py-2 text-white" (click)="openCart()">
+        Ir ao carrinho
+      </button>
+      <p class="px-8 text-white">{{ priceLabel | currency: "BRL" }}</p>
+    </div>
+  </ng-container>
+</footer>

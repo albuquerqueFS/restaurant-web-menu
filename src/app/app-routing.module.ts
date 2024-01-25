@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './layout/layout.component';
+import { LayoutComponent } from './core/layout/layout.component';
 
 const routes: Routes = [
   {
@@ -10,19 +10,24 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./pages/restaurants/restaurants.module').then(
+          import('./features/restaurants/restaurants.module').then(
             (m) => m.RestaurantsModule,
           ),
       },
       {
         path: ':id',
         loadChildren: () =>
-          import('./pages/menu/menu.module').then((m) => m.MenuModule),
+          import('./features/menu/menu.module').then((m) => m.MenuModule),
       },
       {
         path: ':id/:group_id/:item_id',
         loadChildren: () =>
-          import('./pages/item/item.module').then((m) => m.ItemModule),
+          import('./features/item/item.module').then((m) => m.ItemModule),
+      },
+      {
+        path: ':id/cart',
+        loadChildren: () =>
+          import('./features/cart/cart.module').then((m) => m.CartModule),
       },
     ],
   },
