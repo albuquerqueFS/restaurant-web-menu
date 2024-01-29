@@ -1,3 +1,5 @@
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
 import {
   DEFAULT_CURRENCY_CODE,
   LOCALE_ID,
@@ -5,23 +7,21 @@ import {
   isDevMode,
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MenuModule } from './features/menu/menu.module';
-import { LayoutComponent } from './core/layout/layout.component';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { cartFeature } from './core/state/cart/cart.reducer';
+import { NgIconsModule, provideNgIconsConfig } from '@ng-icons/core';
 import {
   featherAirplay,
   featherArrowLeft,
   featherX,
 } from '@ng-icons/feather-icons';
-import { registerLocaleData } from '@angular/common';
-import localePt from '@angular/common/locales/pt';
-import { NgIconsModule, provideNgIconsConfig } from '@ng-icons/core';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ToastModule } from 'primeng/toast';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { LayoutComponent } from './core/layout/layout.component';
+import { cartFeature } from './core/state/cart/cart.reducer';
+import { MenuModule } from './features/menu/menu.module';
 
 registerLocaleData(localePt);
 
@@ -31,6 +31,7 @@ registerLocaleData(localePt);
     BrowserModule,
     AppRoutingModule,
     MenuModule,
+    ToastModule,
     StoreModule.forRoot({ cart: cartFeature.reducer }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
