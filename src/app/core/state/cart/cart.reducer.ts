@@ -8,15 +8,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  cart: [
-    {
-      id: '216f7ba8-c00a-4705-8183-8b5135ae853b',
-      description: '',
-      icon: '',
-      name: '',
-      price: 99.99,
-    },
-  ],
+  cart: [],
   items: 0,
 };
 

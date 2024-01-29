@@ -18,16 +18,17 @@
       class="flex items-center rounded flex-nowrap"
       [ngClass]="{
         'bg-wine-700': !quantity || quantity === 0,
-        'bg-wine-500': quantity && quantity > 0
+        'cursor-pointer bg-wine-500': quantity && quantity > 0,
+        'hover:bg-wine-400': quantity && quantity > 0
       }"
+      (click)="addItem()"
     >
       <button
-        class="flex h-full w-[200px] w-full flex-nowrap items-center justify-center px-8 text-white"
+        class="flex h-full w-[200px] flex-nowrap items-center justify-around gap-4 px-8 text-white"
         [disabled]="!quantity || quantity === 0"
-        (click)="addItem()"
       >
         Adicionar
-        <p class="w-[56px] pl-4 pr-2 text-white">
+        <p class="w-[56px] text-white">
           {{ priceLabel | currency: "BRL" }}
         </p>
       </button>
@@ -41,7 +42,9 @@
     </div>
   </ng-container>
   <ng-container *ngIf="systemLevel === levels.MENU">
-    <div class="flex items-center rounded flex-nowrap bg-wine-500">
+    <div
+      class="flex items-center rounded flex-nowrap bg-wine-500 hover:bg-wine-400"
+    >
       <button class="w-full h-full px-8 py-2 text-white" (click)="openCart()">
         Ir ao carrinho
       </button>

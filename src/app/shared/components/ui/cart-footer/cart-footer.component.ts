@@ -1,8 +1,10 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageModule } from 'primeng/message';
+import { Item } from 'src/@types/type';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { CartFacade } from 'src/app/core/state/cart/cart.facade';
 import { SYSTEM_LEVELS } from 'src/utils/constants';
 
 @Component({
@@ -17,6 +19,7 @@ export class CartFooterComponent {
   @Input({ required: false }) itemPrice: number | null = 0;
   @Input({ required: false }) quantity: number | null = 0;
   @Input({ required: false }) observation: string | null = '';
+  @Input({ required: false }) item!: Item | null;
   @Output() onActionPressed = new EventEmitter<any>();
 
   priceLabel: number | null = 0;
@@ -25,10 +28,13 @@ export class CartFooterComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private location: Location,
     private notification: NotificationService,
+    private cartFacade: CartFacade,
   ) {}
 
   ngOnInit() {
+    console.log(this.item);
     if (this.systemLevel === SYSTEM_LEVELS.ITEM) {
     }
     if (this.systemLevel === SYSTEM_LEVELS.MENU) {
@@ -40,12 +46,18 @@ export class CartFooterComponent {
   }
 
   addItem() {
-    console.log(this.observation);
-    this.notification.showSuccess('Item adicionado ao carrinho!');
+    if (this.item && this.quantity) {
+      this.cartFacade.add(this.item);
+      this.notification.showSuccess('Item adicionado ao carrinho!');
+      this.location.back();
+    }
+    this.cartFacade.cart$.subscribe({ next: console.log });
   }
 
   updatePrice() {
-    this.priceLabel = this.quantity! * this.itemPrice!;
+    if (this.item && this.quantity) {
+      this.priceLabel = this.item.price! * this.quantity;
+    }
   }
 
   increase() {
