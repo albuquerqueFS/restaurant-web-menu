@@ -12,10 +12,11 @@ import { SYSTEM_LEVELS } from 'src/utils/constants';
 })
 export class CartFooterComponent {
   @Input({ required: true }) systemLevel: SYSTEM_LEVELS | null = null;
-  @Input({ required: true }) priceLabel: string = '';
-  @Input() quantity: number | null = null;
+  @Input({ required: false }) itemPrice: number | null = 0;
+  @Input({ required: false }) quantity: number | null = 0;
   @Output() onActionPressed = new EventEmitter<any>();
 
+  priceLabel: number | null = 0;
   levels = SYSTEM_LEVELS;
 
   constructor(
@@ -32,5 +33,21 @@ export class CartFooterComponent {
 
   openCart() {
     this.router.navigate(['cart'], { relativeTo: this.route });
+  }
+
+  updatePrice() {
+    this.priceLabel = this.quantity! * this.itemPrice!;
+  }
+
+  increase() {
+    this.quantity! += 1;
+    this.updatePrice();
+  }
+
+  decrease() {
+    if (this.quantity! > 0) {
+      this.quantity! -= 1;
+      this.updatePrice();
+    }
   }
 }

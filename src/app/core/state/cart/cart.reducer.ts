@@ -17,7 +17,7 @@ export const initialState: State = {
       price: 99.99,
     },
   ],
-  items: 1,
+  items: 0,
 };
 
 export const cartFeature = createFeature({

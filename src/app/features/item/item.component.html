@@ -38,9 +38,8 @@
       </div>
     </main>
   </div>
+  <app-cart-footer
+    [systemLevel]="SYSTEM_LEVEL"
+    [itemPrice]="item.price"
+  ></app-cart-footer>
 </main>
-
-<app-cart-footer
-  [systemLevel]="SYSTEM_LEVEL"
-  [priceLabel]="'100'"
-></app-cart-footer>
