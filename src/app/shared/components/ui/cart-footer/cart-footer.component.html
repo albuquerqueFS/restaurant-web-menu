@@ -14,9 +14,23 @@
   </ng-container>
 
   <ng-container *ngIf="systemLevel === levels.ITEM">
-    <div class="flex items-center rounded flex-nowrap bg-wine-500">
-      <button class="w-full h-full px-8 text-white">Adicionar</button>
-      <p class="px-8 text-white">{{ priceLabel | currency: "BRL" }}</p>
+    <div
+      class="flex items-center rounded flex-nowrap"
+      [ngClass]="{
+        'bg-wine-700': !quantity || quantity === 0,
+        'bg-wine-500': quantity && quantity > 0
+      }"
+    >
+      <button
+        class="flex h-full w-[200px] w-full flex-nowrap items-center justify-center px-8 text-white"
+        [disabled]="!quantity || quantity === 0"
+        (click)="addItem()"
+      >
+        Adicionar
+        <p class="w-[56px] pl-4 pr-2 text-white">
+          {{ priceLabel | currency: "BRL" }}
+        </p>
+      </button>
     </div>
   </ng-container>
 

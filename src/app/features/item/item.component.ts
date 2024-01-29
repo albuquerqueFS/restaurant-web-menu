@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MenuService } from 'src/app/core/services/menu.service';
 import { SYSTEM_LEVELS } from 'src/utils/constants';
@@ -10,6 +11,8 @@ import { SYSTEM_LEVELS } from 'src/utils/constants';
 })
 export class ItemComponent {
   SYSTEM_LEVEL = SYSTEM_LEVELS.ITEM;
+
+  observation = new FormControl('');
 
   private router = inject(ActivatedRoute);
   private menuService = inject(MenuService);

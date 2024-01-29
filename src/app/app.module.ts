@@ -7,6 +7,7 @@ import {
   isDevMode,
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgIconsModule, provideNgIconsConfig } from '@ng-icons/core';
 import {
   featherAirplay,
@@ -22,6 +23,7 @@ import { AppComponent } from './app.component';
 import { LayoutComponent } from './core/layout/layout.component';
 import { cartFeature } from './core/state/cart/cart.reducer';
 import { MenuModule } from './features/menu/menu.module';
+import { MessageService } from 'primeng/api';
 
 registerLocaleData(localePt);
 
@@ -29,6 +31,7 @@ registerLocaleData(localePt);
   declarations: [AppComponent, LayoutComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     MenuModule,
     ToastModule,
@@ -50,6 +53,7 @@ registerLocaleData(localePt);
       size: '1.5em',
       color: 'black',
     }),
+    MessageService,
   ],
   bootstrap: [AppComponent],
 })

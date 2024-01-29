@@ -1,6 +1,5 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -8,11 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent {
-  constructor(
-    private router: Router,
-    private ac: ActivatedRoute,
-    private location: Location,
-  ) {}
+  constructor(private location: Location) {}
 
   goBack() {
     this.location.back();
