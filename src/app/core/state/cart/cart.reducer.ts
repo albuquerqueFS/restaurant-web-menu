@@ -1,9 +1,9 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { cartActions } from './cart.actions';
-import { Item } from 'src/@types/type';
+import { CartItem } from 'src/@types/type';
 
 export interface State {
-  cart: Item[];
+  cart: CartItem[];
   items: number;
 }
 
@@ -17,7 +17,7 @@ export const cartFeature = createFeature({
   reducer: createReducer(
     initialState,
     on(cartActions.remove, (state, { group_id, item_id }) => ({
-      cart: state.cart.filter((item: Item) => item.id !== item_id),
+      cart: state.cart.filter((item: CartItem) => item.id !== item_id),
       items: state.items - 1,
     })),
     on(cartActions.addItem, (state, { item }) => {

@@ -2,7 +2,7 @@ import { CommonModule, Location } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageModule } from 'primeng/message';
-import { Item } from 'src/@types/type';
+import { CartItem, Item } from 'src/@types/type';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { CartFacade } from 'src/app/core/state/cart/cart.facade';
 import { SYSTEM_LEVELS } from 'src/utils/constants';
@@ -34,7 +34,6 @@ export class CartFooterComponent {
   ) {}
 
   ngOnInit() {
-    console.log(this.item);
     if (this.systemLevel === SYSTEM_LEVELS.ITEM) {
     }
     if (this.systemLevel === SYSTEM_LEVELS.MENU) {
@@ -47,7 +46,12 @@ export class CartFooterComponent {
 
   addItem() {
     if (this.item && this.quantity) {
-      this.cartFacade.add(this.item);
+      const cartItem: CartItem = {
+        ...this.item,
+        observation: this.observation,
+      };
+
+      this.cartFacade.add(cartItem);
       this.notification.showSuccess('Item adicionado ao carrinho!');
       this.location.back();
     }

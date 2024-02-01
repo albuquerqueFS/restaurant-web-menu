@@ -3,14 +3,14 @@ import { Store } from '@ngrx/store';
 import { cartActions } from './cart.actions';
 import { Observable } from 'rxjs';
 import { fromCart } from './cart.selectors';
-import { Item } from 'src/@types/type';
+import { CartItem } from 'src/@types/type';
 
 @Injectable({ providedIn: 'root' })
 export class CartFacade {
   #store = inject(Store);
   #isLoaded = false;
 
-  get cart$(): Observable<Item[]> {
+  get cart$(): Observable<CartItem[]> {
     this.#assertLoaded();
     return this.#store.select(fromCart.selectAll);
   }
@@ -19,7 +19,7 @@ export class CartFacade {
     return this.#store.select(fromCart.selectItemsQuantity);
   }
 
-  add(item: Item) {
+  add(item: CartItem) {
     this.#store.dispatch(cartActions.addItem({ item }));
   }
 

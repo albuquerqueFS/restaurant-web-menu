@@ -33,3 +33,7 @@ export interface Item {
   description: string;
   price: number;
 }
+
+export interface CartItem extends Item {
+  observation: string | null;
+}

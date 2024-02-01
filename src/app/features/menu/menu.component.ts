@@ -28,11 +28,7 @@ export class MenuComponent {
     private route: ActivatedRoute,
     private menuService: MenuService,
     private facade: CartFacade,
-  ) {
-    this.restaurant$.subscribe({
-      next: (restaurant) => console.log(restaurant),
-    });
-  }
+  ) {}
 
   ngOnInit() {}
 
