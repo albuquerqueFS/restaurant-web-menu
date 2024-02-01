@@ -4,8 +4,8 @@
 @import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "@fortawesome/fontawesome-free/scss/brands.scss";
 @import "@fortawesome/fontawesome-free/scss/solid.scss";
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200;300;400;500;600&display=swap");
 @import "./assets/scss/theme.css";
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200;300;400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -19,6 +19,8 @@
 
 body {
   font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
 }
 
 p {

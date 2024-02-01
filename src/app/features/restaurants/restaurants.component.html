@@ -1,10 +1,26 @@
-<div *ngIf="restaurants$ | async as restaurants">
-  <div
-    *ngFor="let restaurant of restaurants"
-    [routerLink]="[restaurant.key]"
-    style="display: flex"
-  >
-    <img [src]="restaurant.image_cover" alt="" height="100" width="100" />
-    <a routerLinkActive="router-link-active">{{ restaurant.name }}</a>
+<div class="mx-auto h-[calc(100vh-100px)] max-w-7xl border-l-2 border-r-2 px-4">
+  <div *ngIf="restaurants$ | async as restaurants">
+    <h1 class="py-4">Seus restaurantes</h1>
+
+    <div *ngFor="let restaurant of restaurants" style="display: flex">
+      <p-card
+        [header]="restaurant.name"
+        subheader="Itaquera e região"
+        [style]="{ width: '360px' }"
+      >
+        <ng-template pTemplate="header">
+          <img alt="Card" [src]="restaurant.image_cover" />
+        </ng-template>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+          sed consequuntur error repudiandae numquam deserunt quisquam repellat
+          libero asperiores earum nam nobis, culpa ratione quam perferendis
+          esse, cupiditate neque quas!
+        </p>
+        <ng-template pTemplate="footer">
+          <app-button [routerLink]="[restaurant.key]">ACESSAR</app-button>
+        </ng-template>
+      </p-card>
+    </div>
   </div>
 </div>
