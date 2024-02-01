@@ -17,11 +17,13 @@ import { SYSTEM_LEVELS } from 'src/utils/constants';
 export class CartFooterComponent {
   @Input({ required: true }) systemLevel: SYSTEM_LEVELS | null = null;
   @Input({ required: false }) itemPrice: number | null = 0;
-  @Input({ required: false }) quantity: number | null = 0;
   @Input({ required: false }) observation: string | null = '';
   @Input({ required: false }) item!: Item | null;
   @Output() onActionPressed = new EventEmitter<any>();
 
+  quantity: number | null = 0;
+  totalItems = 0;
+  totalValue = 0;
   priceLabel: number | null = 0;
   levels = SYSTEM_LEVELS;
 
@@ -38,6 +40,14 @@ export class CartFooterComponent {
     }
     if (this.systemLevel === SYSTEM_LEVELS.MENU) {
     }
+    this.cartFacade.cart$.subscribe({
+      next: (cart) => {
+        this.totalItems = cart.length;
+      },
+    });
+    this.cartFacade.totalValue$.subscribe({
+      next: (value) => (this.totalValue = value),
+    });
   }
 
   openCart() {
@@ -48,6 +58,7 @@ export class CartFooterComponent {
     if (this.item && this.quantity) {
       const cartItem: CartItem = {
         ...this.item,
+        quantity: this.quantity,
         observation: this.observation,
       };
 

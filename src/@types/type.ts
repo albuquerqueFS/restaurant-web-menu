@@ -36,4 +36,5 @@ export interface Item {
 
 export interface CartItem extends Item {
   observation: string | null;
+  quantity: number;
 }

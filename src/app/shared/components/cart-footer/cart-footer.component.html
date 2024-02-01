@@ -38,7 +38,7 @@
   <ng-container *ngIf="systemLevel === levels.MENU">
     <div class="flex flex-col items-center">
       <p class="font-bold">Itens no carrinho</p>
-      <p>{{ quantity }}</p>
+      <p>{{ totalItems }}</p>
     </div>
   </ng-container>
   <ng-container *ngIf="systemLevel === levels.MENU">
@@ -48,7 +48,7 @@
       <button class="w-full h-full px-8 py-2 text-white" (click)="openCart()">
         Ir ao carrinho
       </button>
-      <p class="px-8 text-white">{{ priceLabel | currency: "BRL" }}</p>
+      <p class="px-8 text-white">{{ totalValue | currency: "BRL" }}</p>
     </div>
   </ng-container>
 </footer>

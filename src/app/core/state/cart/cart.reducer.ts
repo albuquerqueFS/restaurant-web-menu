@@ -8,7 +8,18 @@ export interface State {
 }
 
 export const initialState: State = {
-  cart: [],
+  cart: [
+    {
+      id: '1',
+      name: 'Big Mac',
+      icon: 'https://cache-backend-mcd.mcdonaldscupones.com/media/image/product$kzXCTbnv/200/200/original?country=br',
+      description:
+        'Hamburguer, Pão uiribinguers, alface, tomate, queijo cheddar, molho uiribillens.',
+      price: 19.99,
+      quantity: 2,
+      observation: 'Remover cebola e maionesa, CLIENTE É ALÉRGICO!',
+    },
+  ],
   items: 0,
 };
 

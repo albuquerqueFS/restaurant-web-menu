@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { cartActions } from './cart.actions';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { fromCart } from './cart.selectors';
 import { CartItem } from 'src/@types/type';
 
@@ -13,6 +13,16 @@ export class CartFacade {
   get cart$(): Observable<CartItem[]> {
     this.#assertLoaded();
     return this.#store.select(fromCart.selectAll);
+  }
+
+  get totalValue$(): Observable<number> {
+    return this.#store
+      .select(fromCart.selectAll)
+      .pipe(
+        map((items) =>
+          items.reduce((acc, item) => acc + item.price * item.quantity, 0),
+        ),
+      );
   }
 
   get itemsQuantity$(): Observable<number> {
