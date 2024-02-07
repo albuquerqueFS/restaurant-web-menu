@@ -18,9 +18,7 @@ export class MenuComponent {
   SYSTEM_LEVEL = SYSTEM_LEVELS.MENU;
 
   filterValue: string = '';
-  restaurant$: Observable<Restaurant> = this.menuService.getRestaurantById(
-    this.route.snapshot.paramMap.get('id') || '',
-  );
+  restaurant$: Observable<Restaurant> = new Observable();
   cart$ = this.facade.cart$;
   quantity$ = this.facade.itemsQuantity$;
 
@@ -30,7 +28,11 @@ export class MenuComponent {
     private facade: CartFacade,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.restaurant$ = this.menuService.getRestaurantById(
+      this.route.snapshot.paramMap.get('id') || '',
+    );
+  }
 
   filterList() {
     this.groupsComponent.filterItemList(this.filterValue);

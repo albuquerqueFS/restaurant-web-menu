@@ -1,36 +1,36 @@
 <header
-  class="absolute top-0 left-0 z-0 flex items-start justify-center w-full h-20 px-4 py-2 pb-4 bg-wine-500"
+  class="absolute left-0 top-0 z-0 flex h-20 w-full items-start justify-center bg-wine-500 px-4 py-2 pb-4"
 >
   <img
-    class="object-scale-down h-2 w-fit"
-    src="/assets/EASYMENU.png"
+    class="h-2 w-fit object-scale-down"
+    src="assets/EASYMENU.png"
     alt=""
     class="logo"
   />
 </header>
 
 <main
-  class="z-10 flex justify-center mx-auto -mt-2 max-w-7xl"
+  class="z-10 mx-auto -mt-2 flex max-w-7xl justify-center"
   *ngIf="restaurant$ | async as restaurant"
 >
   <section
-    class="absolute flex flex-col justify-start w-full max-w-3xl gap-8 px-4 pb-8 top-9"
+    class="absolute top-9 flex w-full max-w-3xl flex-col justify-start gap-8 px-4 pb-8"
   >
     <p-card
-      class="z-10 flex flex-col justify-between w-full p-0 mx-auto shadow-md rounded-t-md"
+      class="z-10 mx-auto flex w-full flex-col justify-between rounded-t-md p-0 shadow-md"
     >
-      <div class="flex flex-wrap justify-center h-full gap-3">
+      <div class="flex h-full flex-wrap justify-center gap-3">
         <img
           class="flex-1 md:max-w-[300px]"
           [src]="restaurant.image_cover"
           alt=""
         />
-        <div class="flex flex-col justify-center flex-1">
-          <p class="text-3xl font-bold whitespace-nowrap text-slate-900">
+        <div class="flex flex-1 flex-col justify-center">
+          <p class="whitespace-nowrap text-3xl font-bold text-slate-900">
             {{ restaurant.name }}
           </p>
           <div
-            class="flex items-center gap-2 mt-1 whitespace-nowrap text-slate-400"
+            class="mt-1 flex items-center gap-2 whitespace-nowrap text-slate-400"
           >
             <i class="fa-solid fa-utensils"></i>
             <p class="text-[12px]">
@@ -58,14 +58,14 @@
       </div>
     </p-card>
 
-    <div class="flex items-center w-full gap-4">
+    <div class="flex w-full items-center gap-4">
       <p-button pRipple class="p-button-primary" (click)="filterList()"
         ><i class="fa-solid fa-magnifying-glass"></i
       ></p-button>
       <input pInputText type="text" class="w-full" [(ngModel)]="filterValue" />
     </div>
 
-    <div class="py-5 group">
+    <div class="group py-5">
       <div class="flex flex-col">
         <app-groups [groups]="restaurant.menu.groups"></app-groups>
       </div>
