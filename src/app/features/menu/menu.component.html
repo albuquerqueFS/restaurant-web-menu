@@ -59,13 +59,17 @@
     </div>
 
     <div class="flex w-full items-center gap-4">
-      <p-button pRipple class="p-button-primary" (click)="filterList()"
-        ><i class="fa-solid fa-magnifying-glass"></i
-      ></p-button>
-      <input pInputText type="text" class="w-full" [(ngModel)]="filterValue" />
+      <input
+        pInputText
+        placeholder="Pesquise aqui o seu prato favorito"
+        type="text"
+        class="w-full"
+        [(ngModel)]="filterValue"
+        (keyup)="filterList()"
+      />
     </div>
 
-    <div class="group py-5">
+    <div class="group pb-5">
       <div class="flex flex-col">
         <app-groups [groups]="restaurant.menu.groups"></app-groups>
       </div>

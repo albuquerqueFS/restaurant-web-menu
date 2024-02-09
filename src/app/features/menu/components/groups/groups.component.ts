@@ -14,10 +14,9 @@ export class GroupsComponent {
     this.filter = _filter;
   }
 
-  matchesFilters(name: string, filter: string) {
-    if (filter === '') {
-      return true;
-    }
-    return name.startsWith(filter) ? true : false;
+  filterItems(items: any[]) {
+    return items.filter((item) =>
+      item.name.toLowerCase().includes(this.filter.toLowerCase()),
+    );
   }
 }
