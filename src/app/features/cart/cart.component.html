@@ -7,7 +7,7 @@
       name="featherArrowLeft"
       class="rounded-full hover:bg-slate-200"
     ></ng-icon>
-    <div class="flex justify-center w-full">
+    <div class="flex w-full justify-center">
       <span>MEUS PEDIDOS</span>
     </div>
   </div>
@@ -45,14 +45,14 @@
               [src]="restaurant.image_cover"
               alt=""
             />
-            <div class="flex flex-col ml-2">
+            <div class="ml-2 flex flex-col">
               <span class="ml-2 text-xl font-normal">{{
                 restaurant.name
               }}</span>
             </div>
           </header>
           <div class="my-2 h-[1px] w-full bg-slate-300"></div>
-          <div class="flex flex-col gap-4 my-4">
+          <div class="my-4 flex flex-col gap-4">
             <div class="flex items-center" *ngFor="let item of cartItems">
               <span
                 class="rounded bg-slate-200 px-2 py-[2px] text-sm text-slate-900"
@@ -65,10 +65,10 @@
               </span>
 
               <span class="ml-auto mr-2 text-sm font-normal">{{
-                item.price | currency: "BRL"
+                item.quantity * item.price | currency: "BRL"
               }}</span>
               <ng-icon
-                (click)="goBack()"
+                (click)="removeItem($event, item)"
                 name="featherX"
                 color="wine-500"
                 class="rounded-full text-wine-500 hover:bg-slate-200"
@@ -86,6 +86,11 @@
     </div>
   </div>
 
+  <div class="card justify-content-center flex gap-2">
+    <p-toast></p-toast>
+    <p-confirmDialog></p-confirmDialog>
+  </div>
+
   <div class="mt-auto" *ngIf="cartTotal$ | async as total">
     <div class="flex justify-between">
       <span class="text-sm font-light text-slate-500">Taxa de entrega</span>
@@ -101,7 +106,9 @@
     class="fixed bottom-0 left-1/2 w-full max-w-[800px] -translate-x-1/2 px-2"
   >
     <button
-      class="flex justify-center w-full py-4 mb-2 font-medium tracking-wider text-white rounded bg-wine-500"
+      class="mb-2 flex w-full justify-center rounded bg-wine-500 py-4 font-medium tracking-wider text-white disabled:bg-gray-400"
+      [disabled]="!(cartItems$ | async)?.length"
+      (click)="finishOrder()"
     >
       Realizar pedido
     </button>

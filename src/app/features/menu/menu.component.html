@@ -14,12 +14,12 @@
   *ngIf="restaurant$ | async as restaurant"
 >
   <section
-    class="absolute top-9 flex w-full max-w-3xl flex-col justify-start gap-8 px-4 pb-8"
+    class="absolute top-8 flex w-full max-w-3xl flex-col justify-start gap-8 px-4 pb-8"
   >
-    <p-card
-      class="z-10 mx-auto flex w-full flex-col justify-between rounded-t-md p-0 shadow-md"
+    <div
+      class="mx-auto flex w-full flex-col justify-between rounded rounded-t-md border border-slate-200 bg-white px-6 py-6 shadow-md"
     >
-      <div class="flex h-full flex-wrap justify-center gap-3">
+      <div class="flex h-full cursor-pointer flex-wrap justify-center gap-3">
         <img
           class="flex-1 md:max-w-[300px]"
           [src]="restaurant.image_cover"
@@ -56,7 +56,7 @@
         <i class="fa-solid fa-motorcycle"></i>
         <a class="underline" href="">Ver tempo e taxa de entrega</a>
       </div>
-    </p-card>
+    </div>
 
     <div class="flex w-full items-center gap-4">
       <p-button pRipple class="p-button-primary" (click)="filterList()"

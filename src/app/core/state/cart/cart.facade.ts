@@ -33,6 +33,10 @@ export class CartFacade {
     this.#store.dispatch(cartActions.addItem({ item }));
   }
 
+  removeItem(item: CartItem) {
+    this.#store.dispatch(cartActions.remove({ item_id: item.id }));
+  }
+
   #assertLoaded() {
     if (!this.#isLoaded) {
       this.#isLoaded = true;

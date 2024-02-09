@@ -2,20 +2,20 @@
   class="fixed bottom-0 left-1/2 flex w-full max-w-[800px] -translate-x-1/2 justify-between rounded bg-white px-4 py-4 outline outline-1 outline-slate-200"
 >
   <ng-container *ngIf="systemLevel === levels.ITEM">
-    <div class="flex items-center gap-2 w-fit">
-      <button class="p-2 rounded-sm bg-slate-600" (click)="decrease()">
-        <i class="text-white fa-solid fa-minus"></i>
+    <div class="flex w-fit items-center gap-2">
+      <button class="rounded-sm bg-slate-600 p-2" (click)="decrease()">
+        <i class="fa-solid fa-minus text-white"></i>
       </button>
       <p class="w-[25px] text-center">{{ quantity }}</p>
-      <button class="p-2 rounded-sm bg-slate-600" (click)="increase()">
-        <i class="text-white fa-solid fa-plus"></i>
+      <button class="rounded-sm bg-slate-600 p-2" (click)="increase()">
+        <i class="fa-solid fa-plus text-white"></i>
       </button>
     </div>
   </ng-container>
 
   <ng-container *ngIf="systemLevel === levels.ITEM">
     <div
-      class="flex items-center rounded flex-nowrap"
+      class="flex flex-nowrap items-center rounded"
       [ngClass]="{
         'bg-wine-700': !quantity || quantity === 0,
         'cursor-pointer bg-wine-500': quantity && quantity > 0,
@@ -43,11 +43,10 @@
   </ng-container>
   <ng-container *ngIf="systemLevel === levels.MENU">
     <div
-      class="flex items-center rounded flex-nowrap bg-wine-500 hover:bg-wine-400"
+      class="flex flex-nowrap items-center rounded bg-wine-500 hover:bg-wine-400"
+      (click)="openCart()"
     >
-      <button class="w-full h-full px-8 py-2 text-white" (click)="openCart()">
-        Ir ao carrinho
-      </button>
+      <button class="h-full w-full px-8 py-2 text-white">Ir ao carrinho</button>
       <p class="px-8 text-white">{{ totalValue | currency: "BRL" }}</p>
     </div>
   </ng-container>

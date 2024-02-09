@@ -85,6 +85,84 @@ export const database: Database = {
         ],
       },
     },
+    {
+      key: '327c31bb-aa3c-49a7-ac38-bb045kekea9b5',
+      name: 'Burguer King',
+      type: 'Restaurante Fast Food',
+      image_cover: 'https://neofeed.com.br/wp-content/uploads/2021/11/BK-1.jpg',
+      isOpen: false,
+      address: {
+        code: '08141-404',
+        country: 'Brazil',
+        city: 'São Paulo',
+        street: 'Rua Ibitira',
+        number: 93,
+      },
+      menu: {
+        groups: [
+          {
+            id: '1',
+            name: 'Hamburguers',
+            items: [
+              {
+                id: '1',
+                name: 'Big Mac DO BK',
+                icon: 'https://cache-backend-mcd.mcdonaldscupones.com/media/image/product$kzXCTbnv/200/200/original?country=br',
+                description:
+                  'Hamburguer, Pão uiribinguers, alface, tomate, queijo cheddar, molho uiribillens.',
+                price: 19.99,
+              },
+              {
+                id: '2',
+                name: 'Quarteirão com Queijo DO BK',
+                icon: 'https://cache-backend-mcd.mcdonaldscupones.com/media/image/product$kzXNUCF7/200/200/original?country=br',
+                description:
+                  'Hamburguer, Pão uiribinguers, alface, tomate, queijo cheddar, molho uiribillens.',
+                price: 19.99,
+              },
+              {
+                id: '3',
+                name: 'Hamburguer DO BK',
+                icon: 'https://cache-backend-mcd.mcdonaldscupones.com/media/image/product$kRXWsQj4/200/200/original?country=br',
+                description:
+                  'Hamburguer, Pão uiribinguers, alface, tomate, queijo cheddar, molho uiribillens.',
+                price: 19.99,
+              },
+              {
+                id: '4',
+                name: 'Cheeseburger DO BK',
+                icon: 'https://cache-backend-mcd.mcdonaldscupones.com/media/image/product$kRXV7tWV/200/200/original?country=br',
+                description:
+                  'Hamburguer, Pão uiribinguers, alface, tomate, queijo cheddar, molho uiribillens.',
+                price: 19.99,
+              },
+            ],
+          },
+          {
+            id: '2',
+            name: 'Sanduíches de Frango',
+            items: [
+              {
+                id: '1',
+                name: 'MacCrispy Chicken Legend',
+                icon: 'https://cache-backend-mcd.mcdonaldscupones.com/media/image/product$kuX1FshW/200/200/original?country=br',
+                description:
+                  'Hamburguer, Pão uiribinguers, alface, tomate, queijo cheddar, molho uiribillens.',
+                price: 19.99,
+              },
+              {
+                id: '2',
+                name: 'MacCrispy Chicken Deluxe',
+                icon: 'https://cache-backend-mcd.mcdonaldscupones.com/media/image/product$ksXrqrYB/200/200/original?country=br',
+                description:
+                  'Hamburguer, Pão uiribinguers, alface, tomate, queijo cheddar, molho uiribillens.',
+                price: 19.99,
+              },
+            ],
+          },
+        ],
+      },
+    },
   ],
 };
 
