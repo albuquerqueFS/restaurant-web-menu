@@ -1,11 +1,4 @@
-import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ConfirmationService } from 'primeng/api';
-import { Observable } from 'rxjs';
-import { CartItem } from 'src/@types/type';
-import { MenuService } from 'src/app/core/services/menu.service';
-import { NotificationService } from 'src/app/core/services/notification.service';
+import { Component, OnInit, signal } from '@angular/core';
 import { CartFacade } from 'src/app/core/state/cart/cart.facade';
 
 @Component({
@@ -14,43 +7,11 @@ import { CartFacade } from 'src/app/core/state/cart/cart.facade';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  cartItems$: Observable<CartItem[]> = new Observable();
-  restaurant$: Observable<any> = new Observable();
-  cartTotal$: Observable<number> = new Observable();
+  step = 'orders';
 
-  constructor(
-    private location: Location,
-    private cartFacade: CartFacade,
-    private menuService: MenuService,
-    private route: ActivatedRoute,
-    private confirmationService: ConfirmationService,
-  ) {}
+  constructor(private cartFacade: CartFacade) {}
 
-  ngOnInit(): void {
-    this.restaurant$ = this.menuService.getRestaurantById(
-      this.route.snapshot.paramMap.get('id') || '',
-    );
-    this.cartItems$ = this.cartFacade.cart$;
-    this.cartTotal$ = this.cartFacade.totalValue$;
-  }
-
-  removeItem(event: any, item: CartItem) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: 'Tem certeza que deseja remover este item do carrinho?',
-      header: 'Tem certeza?',
-      icon: 'pi pi-exclamation-triangle',
-      acceptLabel: 'Sim',
-      rejectLabel: 'Não',
-      acceptIcon: 'none',
-      rejectIcon: 'none',
-      rejectButtonStyleClass: 'p-button-text',
-      accept: () => {
-        this.cartFacade.removeItem(item);
-      },
-      reject: () => {},
-    });
-  }
+  ngOnInit(): void {}
 
   finishOrder() {
     const phoneNumber = '11955306357'; // WhatsApp number in international format without '+'
@@ -62,7 +23,14 @@ export class CartComponent implements OnInit {
     window.open(whatsappUrl, '_blank');
   }
 
-  goBack() {
-    this.location.back();
+  changeStep() {
+    if (this.step === 'address') {
+      this.step = 'orders';
+      return;
+    }
+    if (this.step === 'orders') {
+      this.step = 'address';
+      return;
+    }
   }
 }
