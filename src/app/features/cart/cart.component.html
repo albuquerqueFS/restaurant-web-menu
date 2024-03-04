@@ -1,116 +1,12 @@
+<button (click)="changeStep()">Poggers</button>
 <div
-  class="z-10 mx-auto flex h-full max-w-[800px] flex-col gap-6 px-4 py-4 pb-[80px]"
+  class="relative z-10 mx-auto h-full w-full max-w-[800px] overflow-x-hidden border border-pink-400 px-4 py-4 pb-[80px]"
 >
-  <div class="flex border-b-[1px] pb-4">
-    <ng-icon
-      (click)="goBack()"
-      name="featherArrowLeft"
-      class="rounded-full hover:bg-slate-200"
-    ></ng-icon>
-    <div class="flex w-full justify-center">
-      <span>MEUS PEDIDOS</span>
-    </div>
-  </div>
-
-  <div>
-    <h1 class="mb-2">Será entregue em</h1>
-    <div class="flex flex-col">
-      <span class="text-base font-light text-slate-500">R. Ibitira, 93 </span>
-    </div>
-    <span class="text-sm font-light text-slate-500"
-      >Casa portão branco - São Paulo/SP
-    </span>
-  </div>
-
-  <div class="flex flex-col">
-    <span class="text-wine-500">Entrega comum - R$7,00</span>
-    <span>Hoje, 39-49 min</span>
-  </div>
-
-  <div>
-    <h1 class="mb-2">Seu pedido</h1>
-    <div>
-      <!-- card -->
-      <ng-container *ngIf="cartItems$ | async as cartItems">
-        <div
-          class="rounded-lg border-[1px] px-6 py-4"
-          *ngIf="cartItems.length > 0; else emptyCart"
-        >
-          <header
-            class="flex items-center"
-            *ngIf="restaurant$ | async as restaurant"
-          >
-            <img
-              class="h-[70px] w-[70px] rounded-lg object-cover"
-              [src]="restaurant.image_cover"
-              alt=""
-            />
-            <div class="ml-2 flex flex-col">
-              <span class="ml-2 text-xl font-normal">{{
-                restaurant.name
-              }}</span>
-            </div>
-          </header>
-          <div class="my-2 h-[1px] w-full bg-slate-300"></div>
-          <div class="my-4 flex flex-col gap-4">
-            <div class="flex items-center" *ngFor="let item of cartItems">
-              <span
-                class="rounded bg-slate-200 px-2 py-[2px] text-sm text-slate-900"
-                >{{ item.quantity }}</span
-              >
-              <span class="ml-2 text-sm font-thin">{{ item.name }}</span>
-
-              <span class="ml-6 max-w-[300px] text-sm font-thin">
-                {{ item.observation }}
-              </span>
-
-              <span class="ml-auto mr-2 text-sm font-normal">{{
-                item.quantity * item.price | currency: "BRL"
-              }}</span>
-              <ng-icon
-                (click)="removeItem($event, item)"
-                name="featherX"
-                color="wine-500"
-                class="rounded-full text-wine-500 hover:bg-slate-200"
-              ></ng-icon>
-            </div>
-          </div>
-          <div class="my-2 h-[1px] w-full bg-slate-300"></div>
-        </div>
-      </ng-container>
-      <ng-template #emptyCart>
-        <div class="rounded-lg border-[1px] px-6 py-4">
-          <span>Seu carrinho está vazio</span>
-        </div>
-      </ng-template>
-    </div>
-  </div>
-
-  <div class="card justify-content-center flex gap-2">
-    <p-toast></p-toast>
-    <p-confirmDialog></p-confirmDialog>
-  </div>
-
-  <div class="mt-auto" *ngIf="cartTotal$ | async as total">
-    <div class="flex justify-between">
-      <span class="text-sm font-light text-slate-500">Taxa de entrega</span>
-      <span class="text-sm font-light text-slate-500">R$7,00</span>
-    </div>
-    <div class="flex justify-between">
-      <h1>Total</h1>
-      <h1>{{ total }}</h1>
-    </div>
-  </div>
-
+  <app-orders [active]="step === 'orders'"></app-orders>
   <div
-    class="fixed bottom-0 left-1/2 w-full max-w-[800px] -translate-x-1/2 px-2"
+    class="absolute left-0 top-0 flex h-full w-full max-w-[800px] flex-col gap-6 border border-blue-400"
+    [ngClass]="{ '-translate-x-full': step !== 'address' }"
   >
-    <button
-      class="mb-2 flex w-full justify-center rounded bg-wine-500 py-4 font-medium tracking-wider text-white disabled:bg-gray-400"
-      [disabled]="!(cartItems$ | async)?.length"
-      (click)="finishOrder()"
-    >
-      Realizar pedido
-    </button>
+    <h1 class="mx-auto my-auto">HEEEELLLLL NAAAHH</h1>
   </div>
 </div>
