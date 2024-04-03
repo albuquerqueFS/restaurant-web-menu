@@ -6,8 +6,7 @@
       <p-card
         *ngFor="let restaurant of restaurants"
         [header]="restaurant.name"
-        subheader="Itaquera e região"
-        [style]="{ width: '360px' }"
+        [style]="{ width: '360px', height: '100%' }"
       >
         <ng-template pTemplate="header">
           <img alt="Card" [src]="restaurant.image_cover" />
@@ -16,6 +15,60 @@
           <app-button [routerLink]="[restaurant.key]">ACESSAR</app-button>
         </ng-template>
       </p-card>
+      <p-card
+        [header]="'Adicionar um restaurante'"
+        [style]="{ width: '360px', height: '100%' }"
+      >
+        <ng-template pTemplate="header">
+          <div class="flex h-[205px] items-center justify-center bg-slate-200">
+            <i class="fa-solid fa-plus text-2xl"></i>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+          <app-button (click)="openNewRestarauntForm()">ADICIONAR</app-button>
+        </ng-template>
+      </p-card>
     </div>
   </div>
 </div>
+
+<p-dialog
+  header="Novo Restaurante"
+  [(visible)]="restaurantDialog"
+  [modal]="true"
+  [style]="{ width: 'clamp(500px, 50vw, 900px)' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <form [formGroup]="newRestaurantForm" (ngSubmit)="submitNewRestaurant()">
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-1">
+        <label>Nome</label>
+        <input type="text" pInputText formControlName="name" />
+      </div>
+      <div class="flex flex-col gap-1">
+        <label>Tipo</label>
+        <p-dropdown
+          appendTo="body"
+          [options]="restaurantTypes"
+          formControlName="type"
+        ></p-dropdown>
+      </div>
+      <div>
+        <p-fileUpload
+          mode="basic"
+          chooseLabel="Foto de capa do restaurante"
+          accept="image/*"
+          [maxFileSize]="1000000"
+          (onUpload)="onUpload($event)"
+        ></p-fileUpload>
+      </div>
+      <div class="flex justify-end gap-2">
+        <app-button>CANCELAR</app-button>
+        <app-button [theme]="'secondary'" [disabled]="!newRestaurantForm.valid">
+          CRIAR
+        </app-button>
+      </div>
+    </div>
+  </form>
+</p-dialog>
