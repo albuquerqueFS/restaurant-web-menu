@@ -39,6 +39,10 @@
   [style]="{ width: 'clamp(500px, 50vw, 900px)' }"
   [draggable]="false"
   [resizable]="false"
+  [closable]="true"
+  [closeOnEscape]="true"
+  [dismissableMask]="true"
+  appendTo="body"
 >
   <form [formGroup]="newRestaurantForm" (ngSubmit)="submitNewRestaurant()">
     <div class="flex flex-col gap-4">
@@ -64,7 +68,6 @@
         ></p-fileUpload>
       </div>
       <div class="flex justify-end gap-2">
-        <app-button>CANCELAR</app-button>
         <app-button [theme]="'secondary'" [disabled]="!newRestaurantForm.valid">
           CRIAR
         </app-button>

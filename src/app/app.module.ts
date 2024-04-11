@@ -24,6 +24,8 @@ import { LayoutComponent } from './core/layout/layout.component';
 import { cartFeature } from './core/state/cart/cart.reducer';
 import { MenuModule } from './features/menu/menu.module';
 import { MessageService } from 'primeng/api';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpService } from './core/services/http.service';
 
 registerLocaleData(localePt);
 
@@ -35,6 +37,7 @@ registerLocaleData(localePt);
     AppRoutingModule,
     MenuModule,
     ToastModule,
+    HttpClientModule,
     StoreModule.forRoot({ cart: cartFeature.reducer }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
@@ -54,6 +57,7 @@ registerLocaleData(localePt);
       color: 'black',
     }),
     MessageService,
+    HttpService,
   ],
   bootstrap: [AppComponent],
 })

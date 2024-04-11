@@ -10,6 +10,7 @@ import { ButtonComponent } from 'src/app/shared/components/ui/button/button.comp
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { FileUploadModule } from 'primeng/fileupload';
+import { RestaurantService } from './services/restaurant.service';
 
 @NgModule({
   declarations: [RestaurantsComponent],
@@ -25,5 +26,6 @@ import { FileUploadModule } from 'primeng/fileupload';
     DropdownModule,
     FileUploadModule,
   ],
+  providers: [RestaurantService],
 })
 export class RestaurantsModule {}
